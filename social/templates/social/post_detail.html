@@ -1,0 +1,35 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'post-list' %}" class="btn btn-light">Back to Feed</a>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <p><strong>{{ post.author }}</strong> {{ post.created_on }}</p>
+            <p>{{ post.body }}</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12">
+            <h5>Add a Comment!</h5>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3">Submit!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

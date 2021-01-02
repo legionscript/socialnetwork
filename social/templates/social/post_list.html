@@ -2,32 +2,31 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-            <h5>Add a Post!</h5>
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-5 col-sm-12">
+                <h5>Add a Post!</h5>
+            </div>
         </div>
-    </div>
-
-    <div class="row justify-content-center mt-3 mb-5">
-        <div class="col-md-5 col-sm-12 border-bottom">
-            <form method="POST">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <div class="d-grid gap-2">
-                    <button class="btn btn-success mt-3">Submit!</button>
-                </div>
-            </form>
+        <div class="row justify-content-center mt-3 mb-5">
+            <div class="col-md-5 col-sm-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success mt-3">Submit!</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-
-    {% for post in post_list %}
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-            <p><strong>{{ post.author }}</strong> {{ post.created_on }}</p>
-            <p>{{ post.body }}</p>
+        {% for post in post_list %}
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-5 col-sm-12 border-bottom position-relative">
+                <p><strong>{{ post.author }}</strong> {{ post.created_on }}</p>
+                <p>{{ post.body }}</p>
+                <a class="stretched-link" href="{% url 'post-detail' post.pk %}"></a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endblock content %}
