@@ -4,28 +4,24 @@
 {% block content %}
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-3 col-sm-6">
-            <a href="{% url 'post-list' %}" class="btn btn-light">Back to Feed</a>
+        <div class="col-md-5 col-sm-6">
+            <a href="{% url 'post-list' %}" class="btn btn-light">Back To Feed</a>
         </div>
     </div>
+
     <div class="row justify-content-center mt-3">
         <div class="col-md-5 col-sm-12 border-bottom">
             <p>
                 <strong>{{ post.author }}</strong> {{ post.created_on }}
                 {% if request.user == post.author %}
-                <a href="{% url 'post-edit' post.pk %}" style="color: #333;"><i class="far fa-edit"></i></a>
-                <a href="{% url 'post-delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
+                    <a href="{% url 'post-edit' post.pk %}" style="color: #333;"><i class="far fa-edit"></i></a>
+                    <a href="{% url 'post-delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
                 {% endif %}
             </p>
             <p>{{ post.body }}</p>
         </div>
     </div>
 
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12">
-            <h5>Add a Comment!</h5>
-        </div>
-    </div>
     <div class="row justify-content-center mt-3 mb-5">
         <div class="col-md-5 col-sm-12">
             <form method="POST">
@@ -38,12 +34,12 @@
         </div>
     </div>
     {% for comment in comments %}
-    <div class="row justify-content-center mt-3 mb-5 border-bottom">
-        <div class="col-md-5 col-sm-12">
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12 border-bottom">
             <p>
                 <strong>{{ comment.author }}</strong> {{ comment.created_on }}
                 {% if request.user == comment.author %}
-                <a href="{% url 'comment-delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
+                    <a href="{% url 'comment-delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
                 {% endif %}
             </p>
             <p>{{ comment.comment }}</p>
