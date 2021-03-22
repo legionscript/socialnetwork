@@ -1,3 +1,5 @@
+{% load custom_tags %}
+
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
@@ -30,6 +32,8 @@
           <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
         </ul>
       </div>
+      <div class="nav-item">
+        {% show_notifications %}
       {% endif %}
     </div>
   </div>
