@@ -11,7 +11,7 @@
 
     <div class="row justify-content-center mt-3 mb-5">
         <div class="col-md-5 col-sm-12 border-bottom">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
                 <div class="d-grid gap-2">
@@ -33,6 +33,9 @@
                 </p>
             </div>
             <div class="position-relative">
+                {% if post.image %}
+                  <img src="{{ post.image.url }}" class="post-image" />
+                {% endif %}
                 <p>{{ post.body }}</p>
                 <a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a>
             </div>
