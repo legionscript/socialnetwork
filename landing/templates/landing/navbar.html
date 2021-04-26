@@ -32,6 +32,9 @@
           <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
         </ul>
       </div>
+      <div class="nav-item inbox-icon-container">
+        <a href="{% url 'inbox' %}" class="inbox-icon"><i class="far fa-paper-plane"></i></a>
+      </div>
       <div class="nav-item">
         {% show_notifications %}
       {% endif %}

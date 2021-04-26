@@ -87,3 +87,38 @@
 	cursor: pointer;
 }
 
+.inbox-icon-container {
+	margin-right: 15px;
+}
+
+.inbox-icon {
+	color: #333;
+	transition: 0.5s;
+}
+
+.inbox-icon:hover {
+	transition: 0.5s;
+}
+
+.empty-text {
+	color: #777;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.sent-message {
+	background-color: #f3f3f3;
+	border-radius: 30px;
+	padding: 10px 25px;
+	width: 25%;
+}
+
+.received-message {
+	background-color: rgb(1, 196, 255);
+	color: #fff;
+	border-radius: 30px;
+	padding: 10px 25px;
+	width: 25%;
+	float: right;
+}
+
