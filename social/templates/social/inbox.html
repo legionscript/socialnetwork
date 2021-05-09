@@ -20,7 +20,7 @@
 	{% for thread in threads.all %}
 	<div class="row mb-3">
 		<div class="card col-md-12 p-5 shadow-sm">
-			<h5>{{ thread.user }} - {{ thread.receiver }}</h5>
+			<h5><i class="far fa-envelope inbox-icon"></i>@{{ thread.user }} - @{{ thread.receiver }}</h5>
 			<a class="stretched-link" href="{% url 'thread' thread.pk %}"></a>
 		</div>
 	</div>
