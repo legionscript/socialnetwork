@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 class Post(models.Model):
     body = models.TextField()
-    image = models.ImageField(upload_to='uploads/post_photos', blank=True, null=True)
+    image = models.ManyToManyField('Image', blank=True)
     created_on = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, blank=True, related_name='likes')
@@ -73,3 +73,6 @@ class MessageModel(models.Model):
 	image = models.ImageField(upload_to='uploads/message_photos', blank=True, null=True)
 	date = models.DateTimeField(default=timezone.now)
 	is_read = models.BooleanField(default=False)
+
+class Image(models.Model):
+	image = models.ImageField(upload_to='uploads/post_photos', blank=True, null=True)

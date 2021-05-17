@@ -81,8 +81,14 @@
                 </p>
             </div>
             <div class="position-relative">
-                {% if post.image %}
-                  <img src="{{ post.image.url }}" class="post-image" />
+                {% if post.image.count > 0 %}
+                  <div class="row">
+                    {% for img in post.image.all %}
+                        <div class="col-md-4 col-xs-12">
+                            <img src="{{ img.image.url }}" class="post-image" />
+                        </div>
+                    {% endfor %}
+                  </div>
                 {% endif %}
                 <p>{{ post.body }}</p>
                 <a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a>

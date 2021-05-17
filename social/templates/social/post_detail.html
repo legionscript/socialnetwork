@@ -24,6 +24,15 @@
                     <a href="{% url 'post-edit' post.pk %}" class="edit-color"><i class="far fa-edit"></i></a>
                     <a href="{% url 'post-delete' post.pk %}" class="edit-color"><i class="fas fa-trash"></i></a>
                 {% endif %}
+                {% if post.image.count > 0 %}
+                  <div class="row">
+                    {% for img in post.image.all %}
+                        <div class="col-md-6 col-xs-12">
+                            <img src="{{ img.image.url }}" class="post-image" />
+                        </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
             <p>{{ post.body }}</p>
 
             <div class="d-flex flex-row">
