@@ -24,7 +24,38 @@
     {% for post in post_list %}
     <div class="row justify-content-center mt-3">
         <div class="col-md-5 col-sm-12 border-bottom position-relative">
+            {% if post.shared_user %}
             <div>
+                <a href="{% url 'profile' post.shared_user.profile.pk %}">
+                    <img class="round-circle post-img" height="30" width="30" src="{{ post.shared_user.profile.picture.url }}" />
+                </a>
+                <p class="post-text">
+                    <a class="text-primary post-link" href="{% url 'profile' post.shared_user.profile.pk %}">@{{ post.shared_user }}</a> shared a post on {{ post.shared_on }}
+                </p>
+            </div>
+            {% else %}
+            <div>
+                <a href="{% url 'profile' post.author.profile.pk %}">
+                    <img class="round-circle post-img" height="30" width="30" src="{{ post.author.profile.picture.url }}" />
+                </a>
+                <p class="post-text">
+                    <a class="text-primary post-link" href="{% url 'profile' post.author.profile.pk %}">@{{ post.author }}</a> {{ post.created_on }}
+                    <span onclick="shareToggle('{{ post.pk }}')"><i class="far fa-share-square share-btn"></i></span>
+                </p>
+            </div>
+            {% endif %}
+            <form method="POST" action="{% url 'share-post' post.pk %}" class="d-none" id="{{ post.pk }}">
+                {% csrf_token %}
+                {{ shareform | crispy }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3">share the post</button>
+                </div>
+            </form>
+            {% if post.shared_body %}
+            <div class="position-relative border-bottom mb-3">
+                <p>{{ post.shared_body }}</p>
+            </div>
+            <div class="shared-post">
                 <a href="{% url 'profile' post.author.profile.pk %}">
                     <img class="round-circle post-img" height="30" width="30" src="{{ post.author.profile.picture.url }}" />
                 </a>
@@ -32,7 +63,8 @@
                     <a class="text-primary post-link" href="{% url 'profile' post.author.profile.pk %}">@{{ post.author }}</a> {{ post.created_on }}
                 </p>
             </div>
-            <div class="position-relative">
+            {% endif %}
+            <div class="shared-post position-relative pt-3">
                 {% if post.image.count > 0 %}
                   <div class="row">
                     {% for img in post.image.all %}

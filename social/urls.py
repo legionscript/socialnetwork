@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostListView, PostDetailView, PostEditView, PostDeleteView, CommentDeleteView, ProfileView, ProfileEditView, AddFollower, RemoveFollower, AddLike, AddDislike, UserSearch, ListFollowers, AddCommentLike, AddCommentDislike, CommentReplyView, PostNotification, FollowNotification, ThreadNotification, RemoveNotification, CreateThread, ListThreads, ThreadView, CreateMessage
+from .views import PostListView, PostDetailView, PostEditView, PostDeleteView, CommentDeleteView, ProfileView, ProfileEditView, AddFollower, RemoveFollower, AddLike, AddDislike, UserSearch, ListFollowers, AddCommentLike, AddCommentDislike, CommentReplyView, PostNotification, FollowNotification, ThreadNotification, RemoveNotification, CreateThread, ListThreads, ThreadView, CreateMessage, SharedPostView
 
 urlpatterns = [
     path('', PostListView.as_view(), name='post-list'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('post/<int:post_pk>/comment/<int:pk>/reply', CommentReplyView.as_view(), name='comment-reply'),
     path('post/<int:pk>/like', AddLike.as_view(), name='like'),
     path('post/<int:pk>/dislike', AddDislike.as_view(), name='dislike'),
+    path('post/<int:pk>/share', SharedPostView.as_view(), name='share-post'),
     path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
     path('profile/edit/<int:pk>/', ProfileEditView.as_view(), name='profile-edit'),
     path('profile/<int:pk>/followers/', ListFollowers.as_view(), name='list-followers'),

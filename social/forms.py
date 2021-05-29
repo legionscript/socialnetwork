@@ -43,3 +43,11 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = MessageModel
         fields = ['body', 'image']
+
+class ShareForm(forms.Form):
+    body = forms.CharField(
+        label='',
+        widget=forms.Textarea(attrs={
+            'rows': '3',
+            'placeholder': 'Say Something...'
+            }))

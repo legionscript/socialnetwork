@@ -135,3 +135,11 @@
 .inbox-icon {
 	margin-right: 5px;
 }
+
+.share-btn {
+	cursor: pointer;
+}
+
+.shared-post {
+	margin-left: 30px;
+}
