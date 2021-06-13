@@ -52,7 +52,7 @@
                 </div>
             </form>
             {% if post.shared_body %}
-            <div class="position-relative border-bottom mb-3">
+            <div class="position-relative border-bottom mb-3 body">
                 <p>{{ post.shared_body }}</p>
             </div>
             <div class="shared-post">
@@ -74,7 +74,9 @@
                     {% endfor %}
                   </div>
                 {% endif %}
-                <p>{{ post.body }}</p>
+                <div class="body">
+                    <p>{{ post.body }}</p>
+                </div>
                 <a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a>
             </div>
 

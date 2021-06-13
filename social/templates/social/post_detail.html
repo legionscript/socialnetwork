@@ -33,7 +33,9 @@
                     {% endfor %}
                   </div>
                 {% endif %}
-            <p>{{ post.body }}</p>
+                <div class="body">
+                    <p>{{ post.body }}</p>
+                </div>
 
             <div class="d-flex flex-row">
                 <form method="POST" action="{% url 'like' post.pk %}">

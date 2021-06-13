@@ -143,3 +143,7 @@
 .shared-post {
 	margin-left: 30px;
 }
+
+.body a {
+	text-decoration: none;
+}
