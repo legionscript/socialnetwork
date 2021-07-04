@@ -16,6 +16,11 @@
     ><i class="fas fa-comment"></i> Social Network</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li>
+          <a class="inbox-icon" href="{% url 'explore' %}">
+            <i class="far fa-compass"></i>
+          </a>
+        </li>
       </ul>
       <form class="d-flex" method="GET" action="{% url 'profile-search' %}">
         <div class="input-group">

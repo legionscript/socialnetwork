@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.views import View
-from .models import Post, Comment, UserProfile, Notification, ThreadModel, MessageModel, Image
-from .forms import PostForm, CommentForm, ThreadForm, MessageForm, ShareForm
+from .models import Post, Comment, UserProfile, Notification, ThreadModel, MessageModel, Image, Tag
+from .forms import PostForm, CommentForm, ThreadForm, MessageForm, ShareForm, ExploreForm
 from django.views.generic.edit import UpdateView, DeleteView
 
 
@@ -501,5 +501,45 @@ class CreateMessage(View):
         )
         return redirect('thread', pk=pk)
 
+class Explore(View):
+    def get(self, request, *args, **kwargs):
+        explore_form = ExploreForm()
+        query = self.request.GET.get('query')
+        tag = Tag.objects.filter(name=query).first()
+
+        if tag:
+            posts = Post.objects.filter(tags__in=[tag])
+        else:
+            posts = Post.objects.all()
+
+        context = {
+            'tag': tag,
+            'posts': posts,
+            'explore_form': explore_form,
+        }
+
+        return render(request, 'social/explore.html', context)
+
+    def post(self, request, *args, **kwargs):
+        explore_form = ExploreForm(request.POST)
+        if explore_form.is_valid():
+            query = explore_form.cleaned_data['query']
+            tag = Tag.objects.filter(name=query).first()
+
+            posts = None
+            if tag:
+                posts = Post.objects.filter(tags__in=[tag])
+
+            if posts:
+                context = {
+                    'tag': tag,
+                    'posts': posts,
+                }
+            else:
+                context = {
+                    'tag': tag,
+                }
+            return HttpResponseRedirect(f'/social/explore?query={query}')
+        return HttpResponseRedirect('/social/explore')
 
 
