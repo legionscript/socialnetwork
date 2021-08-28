@@ -19,9 +19,11 @@ daphne==3.0.2
 defusedxml==0.7.1
 distlib==0.3.0
 distro==1.4.0
+dj-database-url==0.5.0
 Django==3.1.7
 django-allauth==0.44.0
 django-crispy-forms==1.11.1
+gunicorn==20.1.0
 hiredis==2.0.0
 html5lib==1.0.1
 hyperlink==21.0.0
@@ -35,6 +37,7 @@ packaging==20.3
 pep517==0.8.2
 Pillow==8.1.2
 progress==1.5
+psycopg2-binary==2.9.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
